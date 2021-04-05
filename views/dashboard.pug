@@ -1,0 +1,63 @@
+doctype html
+html(lang="en")
+    include includes/head.pug
+    body(class="flex flex-col min-h-screen bg-gray-100")
+        main(class="flex flex-grow items-center justify-center flex-col container mx-auto p-4 w-full")
+            .max-w-lg.bg-white.rounded-lg.overflow-hidden.shadow-xl
+                .bg-cover.h-40.bg-gray-900.waves.relative
+                    a(
+                        class="absolute top-1 right-1 rounded-xl px-3 py-1 bg-red-700 hover:bg-red-900 focus:shadow-outline text-white"
+                        href="/auth/logout"
+                    )
+                        | Cerrar sesión
+                .border-b.px-4.pb-4
+                    div(class="text-center sm:text-left sm:flex")
+                        img(class="h-32 w-32 rounded-full border-4 border-white -mt-16 mr-4 z-10" src=avatar alt=username)
+                        .py-2
+                            h3(class="font-bold text-2xl")= username
+                            div(class="inline-flex text-grey-dark sm:flex items-center")
+                                p= email
+            article(
+                aria-label="File Upload Modal"
+                class="relative h-full w-full max-w-lg mt-4 flex flex-col bg-white shadow-xl rounded-lg overflow-hidden" 
+                ondrop="dropHandler(event);"
+                ondragover="dragOverHandler(event);"
+                ondragleave="dragLeaveHandler(event);"
+                ondragenter="dragEnterHandler(event);"
+            )
+                div(
+                    id="overlay"
+                    class="w-full h-full absolute top-0 left-0 pointer-events-none z-500 flex flex-col items-center justify-center rounded-md"
+                )
+                    i
+                        svg(
+                            class="fill-current w-12 h-12 mb-3 text-blue-800"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24"
+                            viewBox="0 0 24 24"
+                        )
+                            path(d="M19.479 10.092c-.212-3.951-3.473-7.092-7.479-7.092-4.005 0-7.267 3.141-7.479 7.092-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.521-5.408zm-7.479-1.092l4 4h-3v4h-2v-4h-3l4-4z")
+                    p(class="text-lg text-blue-800") Arrastra un archivo para subir
+
+                section(class="h-full overflow-auto p-2 md:p-4 lg:p-8 w-full h-full flex flex-col")
+                    header(class="border-dashed border-2 border-gray-400 py-2 flex flex-col justify-center items-center")
+                        p(class="mb-3 font-semibold text-gray-900 flex flex-wrap justify-center text-center")
+                            | Arrastra y suelta un archivo o
+                        input#file-input(type="file" accept="image/*" class="hidden")
+                        button#select-btn(class="mt-2 rounded-sm px-3 py-1 bg-gray-200 hover:bg-gray-300 focus:shadow-outline focus:outline-none")
+                            | Escoge un archivo      
+                        section#image-content(class="p-4")
+                            article(class="preview-content w-full h-full rounded-md bg-gray-100 shadow-sm")
+                                img#image-preview(class="img-preview w-full h-full object-cover rounded-md")
+                            article(class="no-image w-full h-full")
+                                img(class="mx-auto w-32" src="/img/add-file.svg" alt="no data")
+                                p(class="text-small text-gray-500 font-thin mx-auto mt-1")
+                                    | No hay archivo seleccionado
+                div(class="flex justify-end px-4 pb-4 pt-4 bg-gray-500")
+                    button#upload-btn(
+                        onclick="onUpload()"
+                        class="rounded-sm px-3 py-1 bg-gray-900 hover:bg-gray-700 text-white focus:shadow-outline focus:outline-none"
+                    )
+                        | Subir a google drive 
+        include includes/footer.pug
+        script(src="/js/upload.js") 

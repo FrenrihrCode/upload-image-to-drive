@@ -1,0 +1,31 @@
+{
+  "name": "google-drive-api",
+  "version": "1.0.0",
+  "description": "This is a project example for work with google drive api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon -r dotenv/config app.js"
+  },
+  "keywords": [
+    "google-drive"
+  ],
+  "author": "FrenrihrCode",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "googleapis": "^68.0.0",
+    "multer": "^1.4.2",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "pug": "^3.0.2",
+    "session-file-store": "^1.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
